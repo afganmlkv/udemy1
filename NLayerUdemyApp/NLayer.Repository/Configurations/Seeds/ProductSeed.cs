@@ -59,6 +59,15 @@ namespace NLayer.Repository.Configurations.Seeds
                 Price = 6040,
                 Stock = 30,
                 CreatedDate = DateTime.Now
+            },
+            new Product
+            {
+                Id = 6,
+                CategoryId = 2,
+                Name = "Kitap5",
+                Price = 35000,
+                Stock = 20,
+                CreatedDate = DateTime.Now
             }
 
             );
