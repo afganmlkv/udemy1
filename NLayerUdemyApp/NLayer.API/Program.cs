@@ -3,6 +3,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NLayer.API.Filters;
+using NLayer.API.Middlewares;
 using NLayer.Core.Repositories;
 using NLayer.Core.Services;
 using NLayer.Core.UnitOfWorks;
@@ -61,7 +62,10 @@ namespace NLayer.API
                 app.UseSwaggerUI();
             }
 
+
             app.UseHttpsRedirection();
+
+            app.UserCustomException();
 
             app.UseAuthorization();
 
