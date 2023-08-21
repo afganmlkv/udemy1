@@ -5,22 +5,31 @@ using NLayer.Core.DTOs;
 using NLayer.Core.Models;
 using NLayer.Core.Repositories;
 using NLayer.Core.Services;
+using NLayer.Service.Services;
 using System.Net;
 
 namespace NLayer.API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    
     public class ProductController : CustomBaseController
     {
         private readonly IMapper _mapper;
         private readonly IService<Product> _service;
+        private readonly IProductService productService;
 
-        public ProductController(IService<Product> service, IMapper mapper)
+        public ProductController(IService<Product> service, IMapper mapper, IProductService productService)
         {
             _mapper = mapper;
             _service = service;
+            this.productService = productService;
         }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetProductsWithCategory() 
+        {
+            return CreateActionResult(await productService.GetProductsWithCategory());
+        }
+
         [HttpGet]
         public async Task<IActionResult> All()
         {
